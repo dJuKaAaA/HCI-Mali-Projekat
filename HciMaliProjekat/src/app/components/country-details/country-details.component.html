@@ -14,7 +14,7 @@
 <div class="content">
     <app-country-details-info></app-country-details-info>
     <div class="navigation-buttons">
-        <button (click)="leftSwipe()" [disabled]="selectedCountryIndex <= 0">←</button>
-        <button (click)="rightSwipe()" [disabled]="selectedCountryIndex >= countries.length - 1">→</button>
+        <button (click)="rightSwipe()" [disabled]="selectedCountryIndex <= 0">←</button>
+        <button (click)="leftSwipe()" [disabled]="selectedCountryIndex >= countries.length - 1">→</button>
     </div>
 </div>

@@ -74,7 +74,7 @@ export class CountryDetailsComponent implements AfterViewInit {
     this.countryDetailComponent.leftSwipe();
 
     this.flagAnimState[this.selectedCountryIndex] = SMALL_STATE;
-    --this.selectedCountryIndex;
+    ++this.selectedCountryIndex;
     this.flagAnimState[this.selectedCountryIndex] = LARGE_STATE;
 
   }
@@ -87,7 +87,7 @@ export class CountryDetailsComponent implements AfterViewInit {
     this.countryDetailComponent.rightSwipe();
 
     this.flagAnimState[this.selectedCountryIndex] = SMALL_STATE;
-    ++this.selectedCountryIndex;
+    --this.selectedCountryIndex;
     this.flagAnimState[this.selectedCountryIndex] = LARGE_STATE;
   }
 
