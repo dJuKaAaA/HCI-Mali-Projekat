@@ -1,0 +1,26 @@
+:host {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.items {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.single-item {
+    padding: 25px 50px
+}
+
+.crest-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.crest {
+    width: 50%;
+}
+
+
+

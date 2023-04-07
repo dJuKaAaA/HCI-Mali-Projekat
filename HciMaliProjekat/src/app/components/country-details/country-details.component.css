@@ -1,0 +1,60 @@
+:host {
+    display: grid;
+    grid-template-rows: 10% 90%;
+    height: 100vh;
+}
+
+.header {
+    width: 100vw;
+    display: flex;
+    align-items: center;
+}
+
+.header-title {
+    font-size: 30px;
+    margin: 0 25px 0 50px;
+}
+
+.flags-container {
+    text-align: center;
+}
+
+.flag {
+    width: 10%;
+    height: 10%;
+    margin: 0 20px;
+}
+
+.selected-flag {
+    width: 15%;
+    height: 15%;
+    margin: 0 20px;
+}
+
+.navigation-buttons {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.navigation-buttons button {
+    font-size: 45px;
+    width: 225px;
+    margin: 30px 10px;
+    background-color: white;
+    color: #15657D;
+    border-radius: 50px;
+    border: none;
+    box-shadow: 5px 5px 10px rgb(37, 37, 37);
+}
+
+.navigation-buttons button:hover {
+    cursor: pointer;
+    background-color: rgb(220, 220, 220);
+}
+
+.content {
+    background: linear-gradient(to right, #15657D, #aae4f6);
+    width: 100vw;
+}
