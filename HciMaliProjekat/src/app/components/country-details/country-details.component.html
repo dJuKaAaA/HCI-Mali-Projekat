@@ -1,11 +1,12 @@
 <div class="header">
-    <p class="header-title">Zanimljiva geografija</p>
-    <img src="assets/header-icon.png"/>
-
+    <div class="header-title">
+        <p>Zanimljiva geografija</p>
+        <img src="assets/header-icon.png"/>
+    </div>
     <div class="flags-container">
-        <img class="flag" src="assets/MAJKACRNAGORA.png"/>
-        <img class="selected-flag" src="assets/MAJKACRNAGORA.png"/>
-        <img class="flag" src="assets/MAJKACRNAGORA.png"/>
+        <img #flag1 [@highlight]="flagAnimState[0]" class="flag" src="assets/MAJKACRNAGORA.png" (click)="selectFirstCountry()"/>
+        <img #flag2 [@highlight]="flagAnimState[1]" class="flag" src="assets/MAJKACRNAGORA.png" (click)="selectSecondCountry()"/>
+        <img #flag3 [@highlight]="flagAnimState[2]" class="flag" src="assets/MAJKACRNAGORA.png" (click)="selectThirdCountry()"/>
     </div>
 
 </div>
@@ -13,7 +14,7 @@
 <div class="content">
     <app-country-details-info></app-country-details-info>
     <div class="navigation-buttons">
-        <button>←</button>
-        <button>→</button>
+        <button (click)="leftSwipe()" [disabled]="selectedCountryIndex <= 0">←</button>
+        <button (click)="rightSwipe()" [disabled]="selectedCountryIndex >= countries.length - 1">→</button>
     </div>
 </div>

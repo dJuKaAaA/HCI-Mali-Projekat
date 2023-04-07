@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { CountryDetailsComponent } from './components/country-details/country-details.component';
 import { CountryDetailsInfoComponent } from './components/country-details-info/country-details-info.component';
 import { CountryDetailsItemComponent } from './components/country-details-item/country-details-item.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { CountryDetailsItemComponent } from './components/country-details-item/c
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

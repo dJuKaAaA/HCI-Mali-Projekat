@@ -1,3 +1,3 @@
-<span class="item-title">Ime</span>
+<div class="item-title">{{ title }}</div>
 <hr/>
-<span class="item-content">Crna Gora</span>
+<div class="item-content" #itemContent [@swipe-left]="leftSwipeState" [@swipe-right]="rightSwipeState">{{ content }}</div>

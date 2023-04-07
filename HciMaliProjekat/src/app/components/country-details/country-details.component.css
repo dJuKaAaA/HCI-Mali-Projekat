@@ -2,32 +2,41 @@
     display: grid;
     grid-template-rows: 10% 90%;
     height: 100vh;
+    overflow: hidden;
 }
 
 .header {
     width: 100vw;
     display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
 .header-title {
     font-size: 30px;
     margin: 0 25px 0 50px;
+    display: flex;
+    align-items: center;
 }
 
 .flags-container {
-    text-align: center;
+    height: 100%;
+    display: flex;
+    justify-content: right;
+    align-items: center;
 }
 
 .flag {
-    width: 10%;
-    height: 10%;
+    height: 50%;
     margin: 0 20px;
 }
 
+.flag:hover {
+    cursor: pointer;
+}
+
 .selected-flag {
-    width: 15%;
-    height: 15%;
+    height: 90%;
     margin: 0 20px;
 }
 
