@@ -16,7 +16,7 @@
     font-size: 3vh;
     margin: 0 25px 0 50px;
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
 }
 
@@ -75,7 +75,7 @@
     width: 100vw;
 }
 
-@media screen and (max-height: 700px) {
+@media screen and (max-height: 750px) {
 
     .navigation-buttons {
         justify-content: right;
@@ -100,6 +100,7 @@
 
     .header-title {
         font-size: 6vw;
+        justify-content: center;
     }
 
     .flags-container {

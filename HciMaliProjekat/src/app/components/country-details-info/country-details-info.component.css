@@ -4,30 +4,34 @@
 }
 
 .items {
+    width: 50vw;
+    margin-top: 10px;
     display: grid;
     grid-template-columns: 50% 50%;
 }
 
 .single-item {
-    padding: 3vh 2vw; 
+    padding: 1vh 3vh; 
 }
 
 .crest-container {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .crest {
-    width: 50%;
+    width: 30vw;
 }
 
-@media screen and (max-height: 650px) {
+@media screen and (max-height: 750px) { 
 
     .crest {
-        max-width: 20vw;
+        width: auto;
+        height: 60vh;
     }
-    
+
 }
 
 @media screen and (max-width: 500px) {
@@ -40,7 +44,8 @@
     .items {
         display: flex;
         flex-direction: column;
-        margin: 0 20px;
+        margin: 1vh 1vw;
+        width: 90vw;
     }
 
     .crest {
@@ -61,7 +66,8 @@
     .items {
         display: flex;
         flex-direction: column;
-        margin: 0 30px;
+        margin: 1vh 1vw;
+        width: 90vw;
     }
 
     .crest {
