@@ -1,0 +1,23 @@
+<form [style.border-width] = "borderWidth" #f="ngForm" (ngSubmit) = "onSubmit(f)" novalidate id="search-bar">
+    <select #type>
+        <option value = "name">Name</option>
+        <option value = "currency">Currency</option>
+        <option value = "capitalCity">Capital city</option>
+        <option value = "continent">Continent</option>
+    </select>   
+    <div class="relative">
+        <input (focus)="highlight()" autocomplete="off" id="my-input" (blur) = "deHighlight()" name="search" type="text">
+    </div>
+    <button type="submit"><img src="assets/Images/magnifier.png"></button>
+</form>
+
+<div id="filter-by-continent">
+    <p id="filter-label">Filter by continent:</p>
+    <div (click) = "changeActiveFilter('Europe')" class="continent" [ngClass] = "{'active': activeFilter == 'Europe'}">Europe</div>
+    <div (click) = "changeActiveFilter('North America')" class="continent" [ngClass] = "{'active': activeFilter == 'North America'}">North America</div>
+    <div (click) = "changeActiveFilter('South America')" class="continent" [ngClass] = "{'active': activeFilter == 'South America'}">South America</div>
+    <div (click) = "changeActiveFilter('Asia')" class="continent" [ngClass] = "{'active': activeFilter == 'Asia'}">Asia</div>
+    <div (click) = "changeActiveFilter('Australia')" class="continent" [ngClass] = "{'active': activeFilter == 'Australia'}">Australia</div>
+    <div (click) = "changeActiveFilter('Africa')" class="continent" [ngClass] = "{'active': activeFilter == 'Africa'}">Africa</div>
+    <div (click) = "changeActiveFilter('Antartic')" class="continent wide" [ngClass] = "{'active': activeFilter == 'Antartic'}">Antartic</div>
+</div>
