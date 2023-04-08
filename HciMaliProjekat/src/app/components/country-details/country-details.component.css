@@ -16,10 +16,12 @@
     font-size: 3vh;
     margin: 0 25px 0 50px;
     display: flex;
+    justify-content: center;
     align-items: center;
 }
 
 .header-image {
+    margin-left: 10px;
     height: 7vh;
 }
 
@@ -54,7 +56,7 @@
 
 .navigation-buttons button {
     font-size: 4vh;
-    width: 10vw;
+    width: 8vw;
     margin: 15px 10px;
     background-color: white;
     color: #15657D;
@@ -82,4 +84,72 @@
         display: flex;
         justify-content: right;
     }
+
+    .header-title {
+        justify-content: left;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    
+    :host {
+        display: flex;
+        flex-direction: column;
+        overflow: auto;
+    }
+
+    .header {
+        flex-direction: column;
+    }
+
+    .flags-container {
+        margin: 10px;
+        width: 90%;
+        flex-direction: column;
+    }
+
+    .flag {
+        width: 50%;
+        margin: 5px 20px;
+    }
+
+    .navigation-buttons {
+        justify-content: space-between;
+    }
+
+    .navigation-buttons button {
+        width: 25vw;
+        margin: 10px 20px;
+    }
+}
+
+
+@media screen and (max-width: 800px) and (min-width: 500px) {
+
+    :host {
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+    }
+
+    .header {
+        flex-direction: column;
+    }
+
+    .flags-container {
+        width: 50vw;
+        display: flex;
+        justify-content: center;
+    }
+
+    .navigation-buttons {
+        justify-content: space-between;
+    }
+
+    .navigation-buttons button {
+        width: 25vw;
+        margin: 20px 30px;
+    }
+
 }

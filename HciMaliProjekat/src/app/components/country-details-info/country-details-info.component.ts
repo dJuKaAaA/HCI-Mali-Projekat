@@ -1,6 +1,7 @@
 import { Component, ElementRef, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import { CountryDetailsItemComponent } from '../country-details-item/country-details-item.component';
 import { trigger, transition, style, animate, state } from '@angular/animations';
+import { environment } from 'src/environment/environment';
 
 const STARTING_STATE_LEFT: string = "STARTING_STATE_LEFT";
 const ENDING_STATE_LEFT: string = "ENDING_STATE_LEFT";
@@ -12,7 +13,7 @@ const FROM_LEFT_APPEAR: string = "FROM_LEFT_APPEAR";
 const TO_RIGHT_DISAPEAR: string = "TO_RIGHT_DISAPEAR";
 const FROM_RIGHT_APPEAR: string = "FROM_RIGHT_APPEAR";
 
-const ANIMATION_TIME: number = 400;
+const ANIMATION_TIME: number = environment.animationTime;
 const INVISIBLE_TRANSITION_TIME = ANIMATION_TIME / 4;
 
 @Component({

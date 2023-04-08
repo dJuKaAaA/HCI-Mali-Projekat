@@ -21,3 +21,53 @@
 .crest {
     width: 50%;
 }
+
+@media screen and (max-height: 650px) {
+
+    .crest {
+        max-width: 20vw;
+    }
+    
+}
+
+@media screen and (max-width: 500px) {
+    
+    :host {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .items {
+        display: flex;
+        flex-direction: column;
+        margin: 0 20px;
+    }
+
+    .crest {
+        margin: 20px 0;
+        margin-bottom: 60px;
+        width: 80%;
+    }
+
+}
+
+@media screen and (max-width: 800px) and (min-width: 500px) {
+
+    :host {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .items {
+        display: flex;
+        flex-direction: column;
+        margin: 0 30px;
+    }
+
+    .crest {
+        margin: 20px 0;
+        margin-bottom: 60px;
+        width: 60%;
+    }
+
+}

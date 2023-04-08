@@ -1,11 +1,12 @@
 import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { CountryDetailsInfoComponent } from '../country-details-info/country-details-info.component';
 import { trigger, transition, style, animate, state } from '@angular/animations';
+import { environment } from 'src/environment/environment';
 
 const LARGE_STATE: string = "LARGE_STATE";
 const SMALL_STATE: string = "SMALL_STATE";
 
-const ANIMATION_TIME: number = 500;
+const ANIMATION_TIME: number = environment.animationTime * 2;
 
 @Component({
   selector: 'app-country-details',
@@ -14,10 +15,12 @@ const ANIMATION_TIME: number = 500;
   animations: [
     trigger('highlight', [
       state(LARGE_STATE, style({
-        'height': '90%'
+        'height': '80%',
+        'width': '80%'
       })),
       state(SMALL_STATE, style({
-        'height': '50%'
+        'height': '50%',
+        'width': '50%'
       })),
       transition(`${LARGE_STATE} => ${SMALL_STATE}`, animate(ANIMATION_TIME)),
       transition(`${SMALL_STATE} => ${LARGE_STATE}`, animate(ANIMATION_TIME)),
@@ -47,7 +50,7 @@ export class CountryDetailsComponent implements AfterViewInit {
     this.flags.push(this.flag2);
     this.flags.push(this.flag3);
 
-    for (let i = (3 - this.countries.length) - 1; i >= 0; --i) {
+    for (let i =  this.countries.length; i < 3 ; ++i) {
       this.renderer.setStyle(
         this.flags[i].nativeElement,
         'display',
@@ -83,11 +86,26 @@ export class CountryDetailsComponent implements AfterViewInit {
     this.flagAnimState[this.selectedCountryIndex] = LARGE_STATE;
   }
 
-  selectFirstCountry() {
-    if (!this.countryDetailComponent.isDoneSwiping()) {
+  selectCountry(flagId: number) {
+    if (!this.countryDetailComponent.isDoneSwiping() || this.countries.length <= 1) {
       return;
     }
 
+    switch (flagId) {
+      case 1:
+        this.selectFirstCountry();
+        break;
+      case 2:
+        this.selectSecondCountry();
+        break;
+      case 3:
+        this.selectThirdCountry();
+        break;
+    }
+
+  }
+
+  private selectFirstCountry() {
     switch (this.selectedCountryIndex) {
       case 0:
         break
@@ -105,11 +123,7 @@ export class CountryDetailsComponent implements AfterViewInit {
     this.selectedCountryIndex = 0;
   }
 
-  selectSecondCountry() {
-    if (!this.countryDetailComponent.isDoneSwiping()) {
-      return;
-    }
-
+  private selectSecondCountry() {
     switch (this.selectedCountryIndex) {
       case 0:
         this.flagAnimState[this.selectedCountryIndex] = SMALL_STATE;
@@ -127,11 +141,7 @@ export class CountryDetailsComponent implements AfterViewInit {
     this.selectedCountryIndex = 1;
   }
 
-  selectThirdCountry() {
-    if (!this.countryDetailComponent.isDoneSwiping()) {
-      return;
-    }
-
+  private selectThirdCountry() {
     switch (this.selectedCountryIndex) {
       case 0:
         this.flagAnimState[this.selectedCountryIndex] = SMALL_STATE;
