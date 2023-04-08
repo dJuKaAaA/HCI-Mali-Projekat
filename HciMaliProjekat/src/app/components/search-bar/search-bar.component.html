@@ -7,7 +7,7 @@
     </select>   
     <div class="relative">
         <input (focus)="highlight()" autocomplete="off" id="my-input" (blur) = "deHighlight()" name="search" type="text" [formControl] = "control" >
-        <div class = "absolute autofill" style="display: {{autofillDisplay}};">
+        <div class = "absolute autofill" style="opacity: {{autofillOpacity}};">
             <div class="autofill-option" (click) = "selectAutofill(option)" *ngFor="let option of filteredOptions | async">
                 {{option}}
             </div>

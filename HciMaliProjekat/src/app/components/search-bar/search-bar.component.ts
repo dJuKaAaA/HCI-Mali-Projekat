@@ -19,11 +19,11 @@ export class SearchBarComponent {
   control = new FormControl('');
   options:string[] = [];
   filteredOptions!: Observable<string[]>;
-  autofillDisplay:string = "none"
+  autofillOpacity:string = "0"
   filterMap:Map<string, string[]> = new Map<string,string[]>
 
   ngOnInit() {
-    // this.countries = this.makeCountries();
+    this.countries = this.makeCountries();
     this.filteredCountries = this.countries;
     this.fillUpArrays(this.countries);
     this.addAutoComplete();
@@ -140,20 +140,18 @@ export class SearchBarComponent {
   }
 
   highlight(){
-    this.autofillDisplay = "block"
+    this.autofillOpacity = "1"
     this.borderWidth = "2px"
   }
 
   selectAutofill(option:string){
-    this.autofillDisplay = "none";
+    this.autofillOpacity = "none";
     this.control.setValue(option);
   }
 
   deHighlight(){
     this.borderWidth = "1px"
-    setTimeout(()=>{
-      this.autofillDisplay = "none"
-    }, 300)
+    this.autofillOpacity = "0"
   }
 
   changeActiveFilter(continent:string){
