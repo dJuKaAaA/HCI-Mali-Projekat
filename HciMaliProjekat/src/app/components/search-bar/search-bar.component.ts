@@ -12,6 +12,7 @@ export class SearchBarComponent {
   borderWidth:String = "1px";
   activeFilter = "";
   searchBy: string = "name";
+  autofillDisplay: string = "none";
   @Input() countries : Country[] = []; 
   @Output() filtered: EventEmitter<Country[]> = new EventEmitter();
 
@@ -58,6 +59,7 @@ export class SearchBarComponent {
       flag:"asd",
       crest:"asd",
       timeZone:"String",
+      language:"Serbian",
       postalCode:123,
       neighbors: []}
 
@@ -73,6 +75,7 @@ export class SearchBarComponent {
       flag:"asd",
       crest:"asd",
       timeZone:"String",
+      language: "Croatian",
       postalCode:123,
       neighbors: []}
 
@@ -89,6 +92,7 @@ export class SearchBarComponent {
       crest:"asd",
       timeZone:"String",
       postalCode:123,
+      language:"Chadski",
       neighbors: []}
 
     return [c1, c2, c3]
@@ -147,6 +151,7 @@ export class SearchBarComponent {
 
   highlight(){
     this.autofillOpacity = "1"
+    this.autofillDisplay = "block";
     this.borderWidth = "2px"
   }
 
@@ -158,6 +163,9 @@ export class SearchBarComponent {
   deHighlight(){
     this.borderWidth = "1px"
     this.autofillOpacity = "0"
+    setTimeout(()=>{
+      this.autofillDisplay = "none"
+    }, 300)
   }
 
   changeActiveFilter(continent:string){
