@@ -129,7 +129,7 @@ export class SearchBarComponent {
     }
 
     let selectedCountries:Country[] = []
-  
+    console.log(this.searchBy)
     for(let country of this.filteredCountries){
       if(this.searchBy == "name" && country.name.toLowerCase().includes(value?.toLowerCase()!)){
         selectedCountries.push(country);
@@ -137,7 +137,7 @@ export class SearchBarComponent {
         selectedCountries.push(country);
       }else if(this.searchBy == "currency" && country.currency.toLowerCase().includes(value?.toLowerCase()!)){
         selectedCountries.push(country);
-      }else if(this.searchBy == "capitalCity" && country.name.toLowerCase().includes(value?.toLowerCase()!)){
+      }else if(this.searchBy == "capitalCity" && country.capitalCity.toLowerCase().includes(value?.toLowerCase()!)){
         selectedCountries.push(country);
       }
     }
