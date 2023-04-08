@@ -13,10 +13,14 @@
 }
 
 .header-title {
-    font-size: 30px;
+    font-size: 3vh;
     margin: 0 25px 0 50px;
     display: flex;
     align-items: center;
+}
+
+.header-image {
+    height: 7vh;
 }
 
 .flags-container {
@@ -44,13 +48,14 @@
     position: absolute;
     bottom: 0;
     width: 100%;
-    text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
 .navigation-buttons button {
-    font-size: 45px;
-    width: 225px;
-    margin: 30px 10px;
+    font-size: 4vh;
+    width: 10vw;
+    margin: 15px 10px;
     background-color: white;
     color: #15657D;
     border-radius: 50px;
@@ -66,4 +71,15 @@
 .content {
     background: linear-gradient(to right, #15657D, #aae4f6);
     width: 100vw;
+}
+
+@media screen and (max-height: 700px) {
+
+    .navigation-buttons {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        justify-content: right;
+    }
 }

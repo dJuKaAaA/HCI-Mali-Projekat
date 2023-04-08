@@ -9,7 +9,7 @@
 }
 
 .single-item {
-    padding: 25px 50px
+    padding: 3vh 2vw; 
 }
 
 .crest-container {
@@ -21,6 +21,3 @@
 .crest {
     width: 50%;
 }
-
-
-

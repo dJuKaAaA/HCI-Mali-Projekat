@@ -53,16 +53,8 @@ export class CountryDetailsComponent implements AfterViewInit {
         'display',
         'none'
       );
-      this.renderer.setStyle(
-        this.flags[i].nativeElement,
-        'height',
-        '90%'
-      );
 
     }
-
-    // this.flags[this.selectedCountryIndex].nativeElement.classList.remove('flag');
-    // this.flags[this.selectedCountryIndex].nativeElement.classList.add('selected-flag');
 
   }
 
