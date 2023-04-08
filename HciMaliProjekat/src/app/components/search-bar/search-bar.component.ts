@@ -122,6 +122,12 @@ export class SearchBarComponent {
 
   onSubmit(f: NgForm){
     let value = this.control.getRawValue();
+
+    if(value == ""){
+      this.filtered.emit(this.countries);
+      return;
+    }
+
     let selectedCountries:Country[] = []
   
     for(let country of this.filteredCountries){
