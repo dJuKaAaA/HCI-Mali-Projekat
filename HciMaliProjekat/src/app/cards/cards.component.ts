@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CardCountry } from './../model/card-country.model';
+import { Country } from './../model/country.model';
 import { CountryService } from '../service/country.service';
 @Component({
   selector: 'app-cards',
@@ -7,20 +7,20 @@ import { CountryService } from '../service/country.service';
   styleUrls: ['./cards.component.css'],
 })
 export class CardsComponent implements OnInit {
-  @Input() countries: CardCountry[] = [];
+  @Input() countries: Country[] = [];
 
-  public selectedCards: CardCountry[] = [];
-  // public countries: CardCountry[] = [];
+  public selectedCards: Country[] = [];
+  // public countries: Country[] = [];
   constructor(private countryService: CountryService) {}
   // constructor() {}
 
   ngOnInit(): void {
     this.countryService
-      .fetchAllCountries()
+      .fetchAll()
       .subscribe((countries) => (this.countries = countries));
   }
 
-  public onSelectCard(selectedCountryCard: CardCountry): void {
+  public onSelectCard(selectedCountryCard: Country): void {
     console.log(this.selectedCards);
     if (
       this.selectedCards.some((card) => card.name === selectedCountryCard.name)
@@ -33,9 +33,7 @@ export class CardsComponent implements OnInit {
     }
   }
 
-  public saveCountriesToLocaleStorage() {
+  public onCompareClick() {
     localStorage.setItem('countries', JSON.stringify(this.selectedCards));
   }
-
-  // Za details ovde cacuvati
 }

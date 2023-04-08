@@ -27,7 +27,8 @@
 }
 
 .card {
-  margin: 50px 50px;
+  background-color: rgba(255, 255, 255, 0.997);
+  margin: 60px 50px;
   width: 400px;
   margin-top: 30px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -62,7 +63,7 @@
   height: 180px;
   border-top-left-radius: 5%;
   border-top-right-radius: 5%;
-  translate: 0px -55px;
+  translate: 0px -60px;
 }
 
 .country-name-text {

@@ -1,13 +1,17 @@
 <div class="cards-container">
   <div *ngFor="let country of countries; let i = index">
     <app-card
-      [flag]="country.flag"
-      [name]="country.name"
-      [capitalCity]="country.capitalCity"
-      [continents]="country.continents"
-      [population]="country.population"
+      [country]="country"
       [numberOfSelectedCards]="selectedCards.length"
       (click)="onSelectCard(country)"
     ></app-card>
   </div>
+
+  <button
+    (click)="onCompareClick()"
+    *ngIf="selectedCards.length > 1"
+    class="fixed-button"
+  >
+    Compare
+  </button>
 </div>

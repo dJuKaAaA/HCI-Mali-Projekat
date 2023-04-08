@@ -6,21 +6,21 @@
     }"
     class="circle"
   ></div>
-  <img class="flag" src="{{ flag }}" alt="country name" />
+  <img class="flag" src="{{ country.flag }}" alt="country name" />
 
   <div class="card-content">
     <div>
-      <p class="country-name-text play-font center-text">{{ name }}</p>
-      <p class="city-text inter-font center-text">{{ capitalCity }}</p>
+      <p class="country-name-text play-font center-text">{{ country.name }}</p>
+      <p class="city-text inter-font center-text">{{ country.capitalCity }}</p>
     </div>
 
     <div class="content-population-container">
       <div>
-        <p class="blue-text inter-font blue-text-font">Continent</p>
+        <p class="blue-text inter-font blue-text-font">Continents</p>
         <p
           class="population-continent-text mid-bold-text center-text inter-font"
         >
-          {{ continents }}
+          {{ country.continents }}
         </p>
       </div>
       <div>
@@ -28,12 +28,17 @@
         <p
           class="population-continent-text mid-bold-text center-text inter-font"
         >
-          {{ population }}
+          {{ country.population }}
         </p>
       </div>
     </div>
     <div class="card-details-btn-container center-text">
-      <button class="inter-font card-details-btn">Details</button>
+      <button
+        (click)="onDetailsClick(country)"
+        class="inter-font card-details-btn"
+      >
+        Details
+      </button>
     </div>
   </div>
 </div>

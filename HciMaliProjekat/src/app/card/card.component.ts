@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Country } from '../model/country.model';
 
 @Component({
   selector: 'app-card',
@@ -6,11 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./card.component.css'],
 })
 export class CardComponent implements OnInit {
-  @Input() flag: string = '';
-  @Input() name: string = '';
-  @Input() capitalCity: string = '';
-  @Input() continents: string[] = [];
-  @Input() population: number = 0;
+  @Input() country: Country = {} as Country;
   @Input() numberOfSelectedCards = 0;
   isSelected: boolean = false;
 
@@ -22,5 +19,9 @@ export class CardComponent implements OnInit {
     } else if (this.isSelected) {
       this.isSelected = !this.isSelected;
     }
+  }
+
+  onDetailsClick(country: Country) {
+    localStorage.setItem('countries', JSON.stringify([country]));
   }
 }
