@@ -1,14 +1,19 @@
 <form [style.border-width] = "borderWidth" #f="ngForm" (ngSubmit) = "onSubmit(f)" novalidate id="search-bar">
-    <select #type>
+    <select #type (change)="changeTheSearch(type.value)">
         <option value = "name">Name</option>
         <option value = "currency">Currency</option>
         <option value = "capitalCity">Capital city</option>
         <option value = "continent">Continent</option>
     </select>   
     <div class="relative">
-        <input (focus)="highlight()" autocomplete="off" id="my-input" (blur) = "deHighlight()" name="search" type="text">
+        <input (focus)="highlight()" autocomplete="off" id="my-input" (blur) = "deHighlight()" name="search" type="text" [formControl] = "control" >
+        <div class = "absolute autofill" style="display: {{autofillDisplay}};">
+            <div class="autofill-option" (click) = "selectAutofill(option)" *ngFor="let option of filteredOptions | async">
+                {{option}}
+            </div>
+        </div>
     </div>
-    <button type="submit"><img src="assets/Images/magnifier.png"></button>
+    <button type="submit"><img src="assets/images/magnifier.png"></button>
 </form>
 
 <div id="filter-by-continent">
