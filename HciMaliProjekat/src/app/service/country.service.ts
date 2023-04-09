@@ -73,11 +73,10 @@ export class CountryService {
   }
 
   private getLanguages(apiCountry: any): String[] {
-    let languages = [];
+    let languages: String[] = [];
     for (let language in apiCountry.languages) {
       languages.push(apiCountry.languages[language]);
     }
     return languages;
   }
-
 }

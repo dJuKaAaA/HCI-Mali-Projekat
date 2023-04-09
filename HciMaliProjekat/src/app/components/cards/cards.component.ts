@@ -8,25 +8,30 @@ import { Router } from '@angular/router';
 })
 export class CardsComponent implements OnInit {
   @Input() countries: Country[] = [];
-
   public selectedCards: Country[] = [];
+  selectedCountries: any = {};
 
-  constructor(
-    private router: Router
-  ) { }
+  constructor(private router: Router) {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.countries.forEach((el) => {
+      this.selectedCountries[el.name.toString()] = false;
+    });
+  }
 
   public onSelectCard(selectedCountryCard: Country): void {
     // console.log(this.selectedCards);
+
     if (
       this.selectedCards.some((card) => card.name === selectedCountryCard.name)
     ) {
       this.selectedCards = this.selectedCards.filter(
         (card) => card.name !== selectedCountryCard.name
       );
+      this.selectedCountries[selectedCountryCard.name.toString()] = false;
     } else if (this.selectedCards.length < 3) {
       this.selectedCards.push(selectedCountryCard);
+      this.selectedCountries[selectedCountryCard.name.toString()] = true;
     }
   }
 
