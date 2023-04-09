@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
 import { trigger, transition, style, animate, state } from '@angular/animations';
 import { environment } from 'src/environment/environment';
 
@@ -64,24 +64,40 @@ const INVISIBLE_TRANSITION_TIME = ANIMATION_TIME / 4;
     ]),
   ]
 })
-export class CountryDetailsItemComponent implements OnInit {
+export class CountryDetailsItemComponent implements OnInit, AfterViewInit {
 
   rightSwipeState: string = STARTING_STATE_RIGHT;
   leftSwipeState: string = STARTING_STATE_LEFT;
   isDoneSwiping: boolean = true;
 
-  ngOnInit(): void { }
-
   @Input() title: string = "";
   @Input() content: String = "";
+  @Input() isRediretion: boolean = false;
 
   @ViewChild('itemContent') itemContent: ElementRef;
-
+  @ViewChild('itemContentRedirection') itemContentRedirection: ElementRef;
 
   constructor(
     private renderer: Renderer2
   ) { }
 
+  ngAfterViewInit(): void {
+    if (this.isRediretion) {
+      this.renderer.setStyle(
+        this.itemContent.nativeElement,
+        'display',
+        'none'
+      );
+    } else {
+      this.renderer.setStyle(
+        this.itemContentRedirection.nativeElement,
+        'display',
+        'none'
+      );
+    }
+  }
+
+  ngOnInit(): void { }
 
   leftSwipe() {
     this.isDoneSwiping = false;
