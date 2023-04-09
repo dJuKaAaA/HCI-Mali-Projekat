@@ -24,11 +24,14 @@ export class SearchBarComponent {
   filterMap:Map<string, string[]> = new Map<string,string[]>
 
   ngOnInit() {
-    // this.countries = this.makeCountries();
-    this.filteredCountries = this.countries;
-    this.fillUpArrays(this.countries);
-    this.addAutoComplete();
+    setTimeout(() =>{
+      this.filteredCountries = this.countries;
+      this.fillUpArrays(this.countries);
+      this.addAutoComplete();
+    }, 500)
+  }
 
+  ngOnChanges(){
   }
 
   addAutoComplete(){
@@ -105,8 +108,10 @@ export class SearchBarComponent {
     let allCapitalCities:string[] = []
     let allContinents:string[] = []
     for(let country of selectedCountries){
-      this.checkIfAlreadyAdded(allNames, country.name.toString());
-      this.checkIfAlreadyAdded(allCapitalCities, country.capitalCity.toString());
+      if(country.name != undefined)
+        this.checkIfAlreadyAdded(allNames, country.name.toString());
+      if(country.capitalCity!=undefined)
+        this.checkIfAlreadyAdded(allCapitalCities, country.capitalCity.toString());
       for(let currency of country.currencies)
         this.checkIfAlreadyAdded(allCurrency, currency.toString());
       for(let continent of country.continents)
@@ -137,8 +142,8 @@ export class SearchBarComponent {
     }
 
     let selectedCountries:Country[] = []
-    console.log(this.searchBy)
     for(let country of this.filteredCountries){
+      console.log(country.capitalCity)
       if(this.searchBy == "name" && country.name.toLowerCase().includes(value?.toLowerCase()!)){
         selectedCountries.push(country);
       }else if(this.searchBy == "continent"){
@@ -155,7 +160,6 @@ export class SearchBarComponent {
         selectedCountries.push(country);
       }
     }
-    console.log(selectedCountries)
     this.filtered.emit(selectedCountries);
   }
 

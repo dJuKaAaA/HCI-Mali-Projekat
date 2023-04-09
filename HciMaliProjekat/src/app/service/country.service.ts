@@ -54,7 +54,10 @@ export class CountryService {
     country.name = apiCountry.name.common;
     country.flag = apiCountry.flags.png;
     country.currencies = this.getCurrencies(apiCountry);
-    country.capitalCity = apiCountry.capital;
+    if(apiCountry.capital != undefined)
+      country.capitalCity = apiCountry.capital[0];
+    else
+      country.capitalCity = ""
     country.population = apiCountry.population;
     country.continents = apiCountry.continents;
     country.region = apiCountry.region;
