@@ -1,0 +1,44 @@
+<div (click)="onCardSelected()" class="card">
+  <div
+    [ngClass]="{
+      'card-selected': isSelected,
+      'card-not-selected': !isSelected
+    }"
+    class="circle"
+  ></div>
+  <img class="flag" src="{{ country.flag }}" alt="country name" />
+
+  <div class="card-content">
+    <div>
+      <p class="country-name-text play-font center-text">{{ country.name }}</p>
+      <p class="city-text inter-font center-text">{{ country.capitalCity }}</p>
+    </div>
+
+    <div class="content-population-container">
+      <div>
+        <p class="blue-text inter-font blue-text-font">Continents</p>
+        <p
+          class="population-continent-text mid-bold-text center-text inter-font"
+        >
+          {{ country.continents }}
+        </p>
+      </div>
+      <div>
+        <p class="blue-text inter-font blue-text-font">Population</p>
+        <p
+          class="population-continent-text mid-bold-text center-text inter-font"
+        >
+          {{ country.population }}
+        </p>
+      </div>
+    </div>
+    <div class="card-details-btn-container center-text">
+      <button
+        (click)="onDetailsClick(country)"
+        class="inter-font card-details-btn"
+      >
+        Details
+      </button>
+    </div>
+  </div>
+</div>
