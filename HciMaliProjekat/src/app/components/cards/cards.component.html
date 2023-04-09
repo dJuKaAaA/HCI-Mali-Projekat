@@ -1,6 +1,7 @@
 <div class="cards-container">
   <div *ngFor="let country of countries; let i = index">
     <app-card
+      [isSelected]="selectedCountries[country.name.toString()]"
       [country]="country"
       [numberOfSelectedCards]="selectedCards.length"
       (click)="onSelectCard(country)"

@@ -10,11 +10,9 @@ import { Router } from '@angular/router';
 export class CardComponent implements OnInit {
   @Input() country: Country = {} as Country;
   @Input() numberOfSelectedCards = 0;
-  isSelected: boolean = false;
+  @Input() isSelected: boolean = false;
 
-  constructor(
-    private router: Router
-  ) { }
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
