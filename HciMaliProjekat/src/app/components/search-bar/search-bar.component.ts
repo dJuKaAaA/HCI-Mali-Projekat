@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, NgForm } from '@angular/forms';
-import { Observable, map, startWith } from 'rxjs';
+import { Observable, count, map, startWith } from 'rxjs';
 import { Country } from 'src/app/models/country';
 
 @Component({
@@ -48,9 +48,9 @@ export class SearchBarComponent {
 
   makeCountries():Country[]{
     let c1 = {name:"Serbia",
-      currency:"Dinar",
+      currency:["Dinar"],
       capitalCity:"Belgrade",
-      continent:"Europe",
+      continent:["Europe"],
       subregion:"Balkan",
       latitude:42,
       longitude:34,
@@ -64,9 +64,9 @@ export class SearchBarComponent {
       neighbors: []}
 
       let c2 = {name:"Croatia",
-      currency:"Euro",
+      currency:["Euro", "Dinar"],
       capitalCity:"Zagreb",
-      continent:"Europe",
+      continent:["Europe"],
       subregion:"Balkan",
       latitude:42,
       longitude:34,
@@ -80,9 +80,9 @@ export class SearchBarComponent {
       neighbors: []}
 
       let c3 = {name:"Chad",
-      currency:"Dinar",
+      currency:["Dinar"],
       capitalCity:"Belgrade",
-      continent:"Africa",
+      continent:["Africa"],
       subregion:"Balkan",
       latitude:42,
       longitude:34,
@@ -99,21 +99,23 @@ export class SearchBarComponent {
   }
 
   fillUpArrays(selectedCountries:Country[]){
-    let names:string[] = []
-    let currency:string[] = []
-    let capitalCity:string[] = []
-    let continent:string[] = []
+    let allNames:string[] = []
+    let allCurrency:string[] = []
+    let allCapitalCities:string[] = []
+    let allContinents:string[] = []
     for(let country of selectedCountries){
-      this.checkIfAlreadyAdded(names, country.name.toString());
-      this.checkIfAlreadyAdded(currency, country.currency.toString());
-      this.checkIfAlreadyAdded(capitalCity, country.capitalCity.toString());
-      this.checkIfAlreadyAdded(continent, country.continent.toString());
+      this.checkIfAlreadyAdded(allNames, country.name.toString());
+      this.checkIfAlreadyAdded(allCapitalCities, country.capitalCity.toString());
+      for(let currency of country.currency)
+        this.checkIfAlreadyAdded(allCurrency, currency.toString());
+      for(let continent of country.continent)
+        this.checkIfAlreadyAdded(allContinents, continent.toString());
     }
-    this.options = names;
-    this.filterMap.set("name", names);
-    this.filterMap.set("currency", currency);
-    this.filterMap.set("capitalCity", capitalCity);
-    this.filterMap.set("continent", continent);
+    this.filterMap.set("name", allNames);
+    this.filterMap.set("currency", allCurrency);
+    this.filterMap.set("capitalCity", allCapitalCities);
+    this.filterMap.set("continent", allContinents);
+    this.options = this.filterMap.get(this.searchBy)!;
   }
 
   checkIfAlreadyAdded(array:string[], word:string){
@@ -123,6 +125,7 @@ export class SearchBarComponent {
     }
     array.push(word);
   }
+
 
   onSubmit(f: NgForm){
     let value = this.control.getRawValue();
@@ -137,10 +140,16 @@ export class SearchBarComponent {
     for(let country of this.filteredCountries){
       if(this.searchBy == "name" && country.name.toLowerCase().includes(value?.toLowerCase()!)){
         selectedCountries.push(country);
-      }else if(this.searchBy == "continent" && country.continent.toLowerCase().includes(value?.toLowerCase()!)){
-        selectedCountries.push(country);
-      }else if(this.searchBy == "currency" && country.currency.toLowerCase().includes(value?.toLowerCase()!)){
-        selectedCountries.push(country);
+      }else if(this.searchBy == "continent"){
+        for(let continent of country.continent){
+          if(continent.toLowerCase().includes(value?.toLowerCase()!))
+            selectedCountries.push(country);
+        }
+      }else if(this.searchBy == "currency"){
+        for(let currency of country.currency){
+          if(currency.toLowerCase().includes(value?.toLowerCase()!))
+            selectedCountries.push(country);
+        }
       }else if(this.searchBy == "capitalCity" && country.capitalCity.toLowerCase().includes(value?.toLowerCase()!)){
         selectedCountries.push(country);
       }
@@ -185,9 +194,10 @@ export class SearchBarComponent {
   filterCountriesByContinent(continent:string){
     this.filteredCountries = []
     for(let country of this.countries){
-      if(country.continent == continent){
-        this.filteredCountries.push(country);
-      }
+      for(let con of country.continent)
+        if(con == continent){
+          this.filteredCountries.push(country);
+        }
     }
   }
 

@@ -1,8 +1,8 @@
 export interface Country {
     name:String,
-    currency:String,
+    currency:String[],
     capitalCity:String,
-    continent:String,
+    continent:String[],
     subregion:String,
     latitude:Number,
     longitude:Number,
@@ -12,5 +12,6 @@ export interface Country {
     crest:String,
     timeZone:String,
     postalCode:Number,
+    language:String,
     neighbors:Country[]
 }
