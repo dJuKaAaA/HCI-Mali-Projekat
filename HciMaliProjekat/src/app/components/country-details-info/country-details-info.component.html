@@ -1,0 +1,24 @@
+<div class="items">
+    <app-country-details-item class="single-item" [title]="'Ime'" [content]="'Crna Gora'"></app-country-details-item>
+    <app-country-details-item class="single-item" [title]="'Glavni grad'" [content]="'Podgorica'"></app-country-details-item>
+
+    <app-country-details-item class="single-item" [title]="'Regija'" [content]="'Evropa'"></app-country-details-item>
+    <app-country-details-item class="single-item" [title]="'Podregija'" [content]="'Balkan'"></app-country-details-item>
+
+    <app-country-details-item class="single-item" [title]="'Valuta'" [content]="'Euro'"></app-country-details-item>
+    <app-country-details-item class="single-item" [title]="'Populacija'" [content]="'620,000'"></app-country-details-item>
+
+    <app-country-details-item class="single-item" [title]="'Izlazi na more'" [content]="'Da'"></app-country-details-item>
+    <app-country-details-item class="single-item" [title]="'Vremenska zona'" [content]="'UTC+01:00'"></app-country-details-item>
+
+    <app-country-details-item class="single-item" [title]="'Jezik'" [content]="'Srbski'"></app-country-details-item>
+    <app-country-details-item class="single-item" [title]="'Geo. duzina i sirina'" [content]="'44.0 23.0'"></app-country-details-item>
+
+    <app-country-details-item class="single-item" [title]="'Kontinent'" [content]="'Evropa'"></app-country-details-item>
+    <app-country-details-item class="single-item" [title]="'Mapa'" [content]="'https://nekiurl.com'"></app-country-details-item>
+
+</div>
+
+<div class="crest-container" #crest [@swipe-left]="leftSwipeStateCrest" [@swipe-right]="rightSwipeStateCrest">
+    <img src="assets\MAJKACRNAGORAGRB.png" class="crest"/>
+</div>
