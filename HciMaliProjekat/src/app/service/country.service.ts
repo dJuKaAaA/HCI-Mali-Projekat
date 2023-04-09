@@ -59,12 +59,13 @@ export class CountryService {
     country.subregion = apiCountry.subregion;
     country.latitude = apiCountry.latlng[0];
     country.longitude = apiCountry.latlng[1];
-    country.map = apiCountry.maps.openStreetMap;
+    country.map = apiCountry.maps.openStreetMaps;
     country.crest = apiCountry.coatOfArms.png;
     country.timeZones = apiCountry.timezones;
     if (apiCountry.postalCode?.format)
       country.postalCode = apiCountry.postalCode?.format;
     else country.postalCode = '';
+    console.log(country);
     return country;
   }
 }
