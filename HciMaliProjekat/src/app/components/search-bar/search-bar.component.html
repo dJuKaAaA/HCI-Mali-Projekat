@@ -22,7 +22,9 @@
     <div (click) = "changeActiveFilter('North America')" class="continent" [ngClass] = "{'active': activeFilter == 'North America'}">North America</div>
     <div (click) = "changeActiveFilter('South America')" class="continent" [ngClass] = "{'active': activeFilter == 'South America'}">South America</div>
     <div (click) = "changeActiveFilter('Asia')" class="continent" [ngClass] = "{'active': activeFilter == 'Asia'}">Asia</div>
-    <div (click) = "changeActiveFilter('Australia')" class="continent" [ngClass] = "{'active': activeFilter == 'Australia'}">Australia</div>
+    <div (click) = "changeActiveFilter('Oceania')" class="continent" [ngClass] = "{'active': activeFilter == 'Oceania'}">Oceania</div>
     <div (click) = "changeActiveFilter('Africa')" class="continent" [ngClass] = "{'active': activeFilter == 'Africa'}">Africa</div>
-    <div (click) = "changeActiveFilter('Antartic')" class="continent wide" [ngClass] = "{'active': activeFilter == 'Antartic'}">Antartic</div>
+    <div (click) = "changeActiveFilter('Antarctica')" class="continent wide" [ngClass] = "{'active': activeFilter == 'Antarctica'}">Antarctica</div>
 </div>
+
+<div *ngIf="countries != []" ></div>
