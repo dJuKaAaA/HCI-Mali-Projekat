@@ -1,24 +1,63 @@
-<div class="items" *ngIf="country.name != 'Kosovo'">
-    <app-country-details-item class="single-item" [title]="'Ime'" [content]="country.name"></app-country-details-item>
-    <app-country-details-item class="single-item" [title]="'Glavni grad'" [content]="country.capitalCity"></app-country-details-item>
+<div #countryDetailsContainer>
 
-    <app-country-details-item class="single-item" [title]="'Regija'" [content]="country.region"></app-country-details-item>
-    <app-country-details-item class="single-item" [title]="'Podregija'" [content]="country.subregion"></app-country-details-item>
+    <div *ngFor="let country of countries" class="desktop-country-details">
 
-    <app-country-details-item class="single-item" [title]="'Valuta'" [content]="country.currencies[0]"></app-country-details-item>
-    <app-country-details-item class="single-item" [title]="'Populacija'" [content]="country.population.toString()"></app-country-details-item>
+        <div class="flag-container" #flag [@swipe-left]="leftSwipeStateCrest" [@swipe-right]="rightSwipeStateCrest">
+            <img src="{{ country.flag }}" class="flag"/>
+        </div>
 
-    <app-country-details-item class="single-item" [title]="'Vremenska zona'" [content]="country.timeZones[0]"></app-country-details-item>
-    <app-country-details-item class="single-item" [title]="'Vremenska zona'" [content]="country.timeZones[0]"></app-country-details-item>
+        <div class="items" *ngIf="country.name != 'Kosovo'">
 
-    <app-country-details-item class="single-item" [title]="'Jezik'" [content]="'Srbski'"></app-country-details-item>
-    <app-country-details-item class="single-item" [title]="'Geo. duzina i sirina'" [content]="country.longitude + ' ' + country.latitude"></app-country-details-item>
+            <app-country-details-item class="single-item" [title]="'Name'" [content]="country.name"></app-country-details-item>
+            <app-country-details-item class="single-item" [title]="'Capital city'" [content]="country.capitalCity"></app-country-details-item>
+            <app-country-details-item class="single-item" [title]="'Region'" [content]="country.region"></app-country-details-item>
+            <app-country-details-item class="single-item" [title]="'Subregion'" [content]="country.subregion"></app-country-details-item>
+            <app-country-details-item class="single-item" [title]="'Currency'" [content]="country.currencies[0]"></app-country-details-item>
+            <app-country-details-item class="single-item" [title]="'Population'" [content]="country.population.toString()"></app-country-details-item>
+            <app-country-details-item class="single-item" [title]="'Timezone'" [content]="country.timeZones[0]"></app-country-details-item>
+            <app-country-details-item class="single-item" [title]="'Language'" [content]="'Srbski'"></app-country-details-item>
+            <app-country-details-item class="single-item" [title]="'Longitude/Latitude'" [content]="country.longitude + ' ' + country.latitude"></app-country-details-item>
+            <app-country-details-item class="single-item" [title]="'Continent'" [content]="country.continents[0]"></app-country-details-item>
+            <app-country-details-item class="single-item" [title]="'Map'" [content]="country.map" [isRediretion]="true"></app-country-details-item>
 
-    <app-country-details-item class="single-item" [title]="'Kontinent'" [content]="country.continents[0]"></app-country-details-item>
-    <app-country-details-item class="single-item" [title]="'Mapa'" [content]="country.map"></app-country-details-item>
+        </div>
+
+        <div class="crest-container" #crest [@swipe-left]="leftSwipeStateCrest" [@swipe-right]="rightSwipeStateCrest">
+            <img src="{{ country.crest }}" class="crest" />
+        </div>
+
+    </div>
 
 </div>
 
-<div class="crest-container" #crest [@swipe-left]="leftSwipeStateCrest" [@swipe-right]="rightSwipeStateCrest">
-    <img src="{{ country.crest }}" class="crest" />
+<div class="mobile-country-details">
+
+    <div class="country-details">
+
+        <div class="flag-container" #flag [@swipe-left]="leftSwipeStateCrest" [@swipe-right]="rightSwipeStateCrest">
+            <img src="{{ selectedCountry.country.flag }}" class="flag"/>
+        </div>
+
+        <div class="items" *ngIf="selectedCountry.country.name != 'Kosovo'">
+
+            <app-country-details-item class="single-item" [title]="'Name'" [content]="selectedCountry.country.name"></app-country-details-item>
+            <app-country-details-item class="single-item" [title]="'Capital city'" [content]="selectedCountry.country.capitalCity"></app-country-details-item>
+            <app-country-details-item class="single-item" [title]="'Region'" [content]="selectedCountry.country.region"></app-country-details-item>
+            <app-country-details-item class="single-item" [title]="'Subregion'" [content]="selectedCountry.country.subregion"></app-country-details-item>
+            <app-country-details-item class="single-item" [title]="'Currency'" [content]="selectedCountry.country.currencies[0]"></app-country-details-item>
+            <app-country-details-item class="single-item" [title]="'Population'" [content]="selectedCountry.country.population.toString()"></app-country-details-item>
+            <app-country-details-item class="single-item" [title]="'Timezone'" [content]="selectedCountry.country.timeZones[0]"></app-country-details-item>
+            <app-country-details-item class="single-item" [title]="'Language'" [content]="'Srbski'"></app-country-details-item>
+            <app-country-details-item class="single-item" [title]="'Longitude/Latitude'" [content]="selectedCountry.country.longitude + '/' + selectedCountry.country.latitude"></app-country-details-item>
+            <app-country-details-item class="single-item" [title]="'Continent'" [content]="selectedCountry.country.continents[0]"></app-country-details-item>
+            <app-country-details-item class="single-item" [title]="'Map'" [content]="selectedCountry.country.map" [isRediretion]="true"></app-country-details-item>
+
+        </div>
+
+        <div class="crest-container" #crest [@swipe-left]="leftSwipeStateCrest" [@swipe-right]="rightSwipeStateCrest">
+            <img src="{{ selectedCountry.country.crest }}" class="crest" />
+        </div>
+
+    </div>
+
 </div>

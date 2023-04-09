@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, Renderer2, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import { CountryDetailsItemComponent } from '../country-details-item/country-details-item.component';
 import { trigger, transition, style, animate, state } from '@angular/animations';
 import { environment } from 'src/environment/environment';
@@ -66,23 +66,54 @@ const INVISIBLE_TRANSITION_TIME = ANIMATION_TIME / 4;
     ]),
   ]
 })
-export class CountryDetailsInfoComponent implements OnInit {
+export class CountryDetailsInfoComponent implements OnInit, AfterViewInit {
+
+  @ViewChildren(CountryDetailsItemComponent) items: Array<CountryDetailsItemComponent>;
+
+  @ViewChild('crest') crest: ElementRef;
+  @ViewChild('flag') flag: ElementRef;
+
+  rightSwipeStateCrest: string = STARTING_STATE_RIGHT;
+  leftSwipeStateCrest: string = STARTING_STATE_LEFT;
+  private isDoneSwipingCrest: boolean = true;
+
+  @Input() countries: Country[];
+  @Input() selectedCountry: { country: Country, index: number } = {} as { country: Country, index: number };
+
+  @ViewChild('countryDetailsContainer') countryDetailsContainerRef: ElementRef;
 
   constructor(
     private renderer: Renderer2
   ) {}
 
-  @Input() country: Country;
-
   ngOnInit(): void { }
 
-  @ViewChildren(CountryDetailsItemComponent) items: Array<CountryDetailsItemComponent>;
+  ngAfterViewInit(): void {
+    let columnDefinition = "100%";
+    switch (this.countries.length) {
+      case 1:
+        columnDefinition = "100%";
+        break;
+      case 2:
+        columnDefinition = "50% 50%";
+        break;
+      case 3:
+        columnDefinition = "33% 33% 33%";
+        break;
+    }
 
-  @ViewChild('crest') crest: ElementRef;
-
-  rightSwipeStateCrest: string = STARTING_STATE_RIGHT;
-  leftSwipeStateCrest: string = STARTING_STATE_LEFT;
-  private isDoneSwipingCrest: boolean = true;
+    this.renderer.setStyle(
+      this.countryDetailsContainerRef.nativeElement,
+      'display',
+      'grid'
+    );
+    this.renderer.setStyle(
+      this.countryDetailsContainerRef.nativeElement,
+      'grid-template-columns',
+      columnDefinition
+    );
+    
+  }
 
   private leftSwipeCrest() {
     this.isDoneSwipingCrest = false;
@@ -100,6 +131,18 @@ export class CountryDetailsInfoComponent implements OnInit {
         'transform',
         'translate(50px, 0)'
       );
+      this.renderer.setStyle(
+        this.flag.nativeElement,
+        'opacity',
+        '0.0'
+      );
+      this.renderer.setStyle(
+        this.flag.nativeElement,
+        'transform',
+        'translate(50px, 0)'
+      );
+      ++this.selectedCountry.index;
+      this.selectedCountry.country = this.countries[this.selectedCountry.index];
 
       setTimeout(() => {
         this.leftSwipeStateCrest = ENDING_STATE_LEFT;
@@ -129,6 +172,19 @@ export class CountryDetailsInfoComponent implements OnInit {
         'transform',
         'translate(-50px, 0)'
       );
+      this.renderer.setStyle(
+        this.flag.nativeElement,
+        'opacity',
+        '0.0'
+      );
+      this.renderer.setStyle(
+        this.flag.nativeElement,
+        'transform',
+        'translate(-50px, 0)'
+      );
+
+      --this.selectedCountry.index;
+      this.selectedCountry.country = this.countries[this.selectedCountry.index];
 
       setTimeout(() => {
         this.rightSwipeStateCrest = ENDING_STATE_RIGHT;

@@ -1,20 +1,15 @@
 <div class="header">
     <div class="header-title">
-        <p>Zanimljiva geografija</p>
+        <p>Interesting Geography</p>
         <img src="assets/header-icon.png" class="header-image"/>
-    </div>
-    <div class="flags-container">
-        <img #flag1 [@highlight]="flagAnimState[0]" class="flag" src="assets/MAJKACRNAGORA.png" (click)="selectCountry(1)"/>
-        <img #flag2 [@highlight]="flagAnimState[1]" class="flag" src="assets/MAJKACRNAGORA.png" (click)="selectCountry(2)"/>
-        <img #flag3 [@highlight]="flagAnimState[2]" class="flag" src="assets/MAJKACRNAGORA.png" (click)="selectCountry(3)"/>
     </div>
 
 </div>
 
 <div class="content">
-    <app-country-details-info [country]="countries[0]"></app-country-details-info>
+    <app-country-details-info [countries]="countries" [selectedCountry]="selectedCountry"></app-country-details-info>
     <div class="navigation-buttons" *ngIf="countries.length > 1">
-        <button (click)="rightSwipe()" [disabled]="selectedCountryIndex <= 0">←</button>
-        <button (click)="leftSwipe()" [disabled]="selectedCountryIndex >= countries.length - 1">→</button>
+        <button (click)="rightSwipe()" [disabled]="selectedCountry.index <= 0">←</button>
+        <button (click)="leftSwipe()" [disabled]="selectedCountry.index >= countries.length - 1">→</button>
     </div>
 </div>

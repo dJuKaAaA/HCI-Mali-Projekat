@@ -1,19 +1,17 @@
 :host {
     display: grid;
-    grid-template-rows: 10% 90%;
+    grid-template-rows: 120px auto;
     height: 100vh;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 .header {
-    width: 100vw;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
     align-items: center;
 }
 
 .header-title {
-    font-size: 3vh;
+    font-size: 30px;
     margin: 0 25px 0 50px;
     display: flex;
     justify-content: left;
@@ -22,7 +20,7 @@
 
 .header-image {
     margin-left: 10px;
-    height: 7vh;
+    height: 70px;
 }
 
 .flags-container {
@@ -50,8 +48,7 @@
     position: absolute;
     bottom: 0;
     width: 100%;
-    display: flex;
-    justify-content: center;
+    display: none;
 }
 
 .navigation-buttons button {
@@ -73,17 +70,6 @@
 .content {
     background: linear-gradient(to right, #15657D, #aae4f6);
     width: 100vw;
-}
-
-@media screen and (max-height: 750px) {
-
-    .navigation-buttons {
-        justify-content: right;
-    }
-
-    .header-title {
-        width: 100%;
-    }
 }
 
 @media screen and (max-width: 500px) {
@@ -115,6 +101,7 @@
     }
 
     .navigation-buttons {
+        display: flex;
         justify-content: space-between;
     }
 
@@ -149,6 +136,7 @@
     }
 
     .navigation-buttons {
+        display: flex;
         justify-content: space-between;
     }
 

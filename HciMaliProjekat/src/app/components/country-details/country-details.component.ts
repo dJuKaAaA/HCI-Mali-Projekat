@@ -28,7 +28,7 @@ const ANIMATION_TIME: number = environment.animationTime * 2;
     ]),
   ]
 })
-export class CountryDetailsComponent implements OnInit, AfterViewInit {
+export class CountryDetailsComponent implements OnInit {
 
   @ViewChild(CountryDetailsInfoComponent) countryDetailComponent: CountryDetailsInfoComponent;
 
@@ -40,7 +40,7 @@ export class CountryDetailsComponent implements OnInit, AfterViewInit {
   flagAnimState: Array<string> = [LARGE_STATE, SMALL_STATE, SMALL_STATE]
 
   countries: Array<Country> = [] 
-  selectedCountryIndex: number = 0;
+  selectedCountry: { country: Country, index: number } = {} as { country: Country, index: number };
 
   constructor(
     private renderer: Renderer2
@@ -49,30 +49,9 @@ export class CountryDetailsComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     const localStorageItem = localStorage.getItem("countries")?.toString()!;
     this.countries = JSON.parse(localStorageItem);
-  }
 
-  ngAfterViewInit(): void {
-    this.flags.push(this.flag1);
-    this.flags.push(this.flag2);
-    this.flags.push(this.flag3);
-
-    for (let i = this.countries.length; i < 3 ; ++i) {
-      this.renderer.setStyle(
-        this.flags[i].nativeElement,
-        'display',
-        'none'
-      );
-    }
-
-    for (let i = 0; i < this.countries.length; ++i) {
-      this.renderer.setAttribute(
-        this.flags[i].nativeElement,
-        'src',
-        this.countries[i].flag.toString()
-      );
-
-    }
-
+    this.selectedCountry.country = this.countries[0];
+    this.selectedCountry.index = 0;
   }
 
   leftSwipe() {
@@ -82,10 +61,6 @@ export class CountryDetailsComponent implements OnInit, AfterViewInit {
 
     this.countryDetailComponent.leftSwipe();
 
-    this.flagAnimState[this.selectedCountryIndex] = SMALL_STATE;
-    ++this.selectedCountryIndex;
-    this.flagAnimState[this.selectedCountryIndex] = LARGE_STATE;
-
   }
 
   rightSwipe() {
@@ -94,83 +69,6 @@ export class CountryDetailsComponent implements OnInit, AfterViewInit {
     }
 
     this.countryDetailComponent.rightSwipe();
-
-    this.flagAnimState[this.selectedCountryIndex] = SMALL_STATE;
-    --this.selectedCountryIndex;
-    this.flagAnimState[this.selectedCountryIndex] = LARGE_STATE;
-  }
-
-  selectCountry(flagId: number) {
-    if (!this.countryDetailComponent.isDoneSwiping() || this.countries.length <= 1) {
-      return;
-    }
-
-    switch (flagId) {
-      case 1:
-        this.selectFirstCountry();
-        break;
-      case 2:
-        this.selectSecondCountry();
-        break;
-      case 3:
-        this.selectThirdCountry();
-        break;
-    }
-
-  }
-
-  private selectFirstCountry() {
-    switch (this.selectedCountryIndex) {
-      case 0:
-        break
-      case 1:
-        this.flagAnimState[this.selectedCountryIndex] = SMALL_STATE;
-        this.flagAnimState[0] = LARGE_STATE;
-        this.countryDetailComponent.rightSwipe();
-        break;
-      case 2:
-        this.flagAnimState[this.selectedCountryIndex] = SMALL_STATE;
-        this.flagAnimState[0] = LARGE_STATE;
-        this.countryDetailComponent.rightSwipe();
-        break;
-    }
-    this.selectedCountryIndex = 0;
-  }
-
-  private selectSecondCountry() {
-    switch (this.selectedCountryIndex) {
-      case 0:
-        this.flagAnimState[this.selectedCountryIndex] = SMALL_STATE;
-        this.flagAnimState[1] = LARGE_STATE;
-        this.countryDetailComponent.leftSwipe();
-        break
-      case 1:
-        break;
-      case 2:
-        this.flagAnimState[this.selectedCountryIndex] = SMALL_STATE;
-        this.flagAnimState[1] = LARGE_STATE;
-        this.countryDetailComponent.rightSwipe();
-        break;
-    }
-    this.selectedCountryIndex = 1;
-  }
-
-  private selectThirdCountry() {
-    switch (this.selectedCountryIndex) {
-      case 0:
-        this.flagAnimState[this.selectedCountryIndex] = SMALL_STATE;
-        this.flagAnimState[2] = LARGE_STATE;
-        this.countryDetailComponent.leftSwipe();
-        break
-      case 1:
-        this.flagAnimState[this.selectedCountryIndex] = SMALL_STATE;
-        this.flagAnimState[2] = LARGE_STATE;
-        this.countryDetailComponent.leftSwipe();
-        break;
-      case 2:
-        break;
-    }
-    this.selectedCountryIndex = 2;
   }
 
 }

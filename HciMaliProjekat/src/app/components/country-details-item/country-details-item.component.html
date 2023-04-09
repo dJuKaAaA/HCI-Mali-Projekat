@@ -1,3 +1,4 @@
 <div class="item-title">{{ title }}</div>
 <hr/>
 <div class="item-content" #itemContent [@swipe-left]="leftSwipeState" [@swipe-right]="rightSwipeState">{{ content }}</div>
+<a class="item-content" #itemContentRedirection [@swipe-left]="leftSwipeState" [@swipe-right]="rightSwipeState" href="{{content}}" target="_blank">{{ content }}</a>
