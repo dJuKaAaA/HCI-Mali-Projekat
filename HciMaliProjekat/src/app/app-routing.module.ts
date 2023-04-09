@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { CountryService } from './service/country.service';
 import { CountryDetailsComponent } from './components/country-details/country-details.component';
 
