@@ -1,7 +1,8 @@
-import { Component, ElementRef, Renderer2, ViewChild, ViewChildren } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import { CountryDetailsItemComponent } from '../country-details-item/country-details-item.component';
 import { trigger, transition, style, animate, state } from '@angular/animations';
 import { environment } from 'src/environment/environment';
+import { Country } from 'src/app/model/country.model';
 
 const STARTING_STATE_LEFT: string = "STARTING_STATE_LEFT";
 const ENDING_STATE_LEFT: string = "ENDING_STATE_LEFT";
@@ -65,11 +66,15 @@ const INVISIBLE_TRANSITION_TIME = ANIMATION_TIME / 4;
     ]),
   ]
 })
-export class CountryDetailsInfoComponent {
+export class CountryDetailsInfoComponent implements OnInit {
 
   constructor(
     private renderer: Renderer2
   ) {}
+
+  @Input() country: Country;
+
+  ngOnInit(): void { }
 
   @ViewChildren(CountryDetailsItemComponent) items: Array<CountryDetailsItemComponent>;
 

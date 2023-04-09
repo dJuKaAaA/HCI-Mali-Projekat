@@ -1,9 +1,9 @@
 .play-font {
-  font-family: "Play";
+  /* font-family: "Play"; */
 }
 
 .inter-font {
-  font-family: "Inter";
+  /* font-family: "Inter"; */
 }
 
 .blue-text {
@@ -55,7 +55,7 @@
   background-color: white;
 }
 .card-selected {
-  background-color: red;
+  background-color: #fbca08;
 }
 
 .flag {
@@ -156,8 +156,8 @@
 
 @media only screen and (max-width: 480px) {
   .card {
-    width: 100%;
-    margin: 0px;
+    width: 80%;
+    margin: 0 auto;
     border-radius: 0px;
     margin-bottom: 50px;
     margin-top: 25px;
@@ -167,6 +167,7 @@
 
   .flag {
     translate: 0px -13.5px;
+    justify-content: center;
     width: 100%;
     border-top-left-radius: 0%;
     border-top-right-radius: 0;

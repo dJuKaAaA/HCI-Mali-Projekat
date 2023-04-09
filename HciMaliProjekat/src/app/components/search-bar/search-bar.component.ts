@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, NgForm } from '@angular/forms';
 import { Observable, count, map, startWith } from 'rxjs';
-import { Country } from 'src/app/models/country';
+import { Country } from 'src/app/model/country.model';
 
 @Component({
   selector: 'app-search-bar',
@@ -24,10 +24,11 @@ export class SearchBarComponent {
   filterMap:Map<string, string[]> = new Map<string,string[]>
 
   ngOnInit() {
-    this.countries = this.makeCountries();
+    // this.countries = this.makeCountries();
     this.filteredCountries = this.countries;
     this.fillUpArrays(this.countries);
     this.addAutoComplete();
+
   }
 
   addAutoComplete(){
@@ -46,57 +47,57 @@ export class SearchBarComponent {
     return value.toLowerCase().replace(/\s/g, '');
   }
 
-  makeCountries():Country[]{
-    let c1 = {name:"Serbia",
-      currency:["Dinar"],
-      capitalCity:"Belgrade",
-      continent:["Europe"],
-      subregion:"Balkan",
-      latitude:42,
-      longitude:34,
-      Population:8000000,
-      map:"asd",
-      flag:"asd",
-      crest:"asd",
-      timeZone:"String",
-      language:"Serbian",
-      postalCode:123,
-      neighbors: []}
+  // makeCountries():Country[]{
+  //   let c1 = {name:"Serbia",
+  //     currency:["Dinar"],
+  //     capitalCity:"Belgrade",
+  //     continent:["Europe"],
+  //     subregion:"Balkan",
+  //     latitude:42,
+  //     longitude:34,
+  //     Population:8000000,
+  //     map:"asd",
+  //     flag:"asd",
+  //     crest:"asd",
+  //     timeZone:"String",
+  //     language:"Serbian",
+  //     postalCode:123,
+  //     neighbors: []}
 
-      let c2 = {name:"Croatia",
-      currency:["Euro", "Dinar"],
-      capitalCity:"Zagreb",
-      continent:["Europe"],
-      subregion:"Balkan",
-      latitude:42,
-      longitude:34,
-      Population:8000000,
-      map:"asd",
-      flag:"asd",
-      crest:"asd",
-      timeZone:"String",
-      language: "Croatian",
-      postalCode:123,
-      neighbors: []}
+  //     let c2 = {name:"Croatia",
+  //     currency:["Euro", "Dinar"],
+  //     capitalCity:"Zagreb",
+  //     continent:["Europe"],
+  //     subregion:"Balkan",
+  //     latitude:42,
+  //     longitude:34,
+  //     Population:8000000,
+  //     map:"asd",
+  //     flag:"asd",
+  //     crest:"asd",
+  //     timeZone:"String",
+  //     language: "Croatian",
+  //     postalCode:123,
+  //     neighbors: []}
 
-      let c3 = {name:"Chad",
-      currency:["Dinar"],
-      capitalCity:"Belgrade",
-      continent:["Africa"],
-      subregion:"Balkan",
-      latitude:42,
-      longitude:34,
-      Population:8000000,
-      map:"asd",
-      flag:"asd",
-      crest:"asd",
-      timeZone:"String",
-      postalCode:123,
-      language:"Chadski",
-      neighbors: []}
+  //     let c3 = {name:"Chad",
+  //     currency:["Dinar"],
+  //     capitalCity:"Belgrade",
+  //     continent:["Africa"],
+  //     subregion:"Balkan",
+  //     latitude:42,
+  //     longitude:34,
+  //     Population:8000000,
+  //     map:"asd",
+  //     flag:"asd",
+  //     crest:"asd",
+  //     timeZone:"String",
+  //     postalCode:123,
+  //     language:"Chadski",
+  //     neighbors: []}
 
-    return [c1, c2, c3]
-  }
+  //   return [c1, c2, c3]
+  // }
 
   fillUpArrays(selectedCountries:Country[]){
     let allNames:string[] = []
@@ -106,9 +107,9 @@ export class SearchBarComponent {
     for(let country of selectedCountries){
       this.checkIfAlreadyAdded(allNames, country.name.toString());
       this.checkIfAlreadyAdded(allCapitalCities, country.capitalCity.toString());
-      for(let currency of country.currency)
+      for(let currency of country.currencies)
         this.checkIfAlreadyAdded(allCurrency, currency.toString());
-      for(let continent of country.continent)
+      for(let continent of country.continents)
         this.checkIfAlreadyAdded(allContinents, continent.toString());
     }
     this.filterMap.set("name", allNames);
@@ -141,12 +142,12 @@ export class SearchBarComponent {
       if(this.searchBy == "name" && country.name.toLowerCase().includes(value?.toLowerCase()!)){
         selectedCountries.push(country);
       }else if(this.searchBy == "continent"){
-        for(let continent of country.continent){
+        for(let continent of country.continents){
           if(continent.toLowerCase().includes(value?.toLowerCase()!))
             selectedCountries.push(country);
         }
       }else if(this.searchBy == "currency"){
-        for(let currency of country.currency){
+        for(let currency of country.currencies){
           if(currency.toLowerCase().includes(value?.toLowerCase()!))
             selectedCountries.push(country);
         }
@@ -194,7 +195,7 @@ export class SearchBarComponent {
   filterCountriesByContinent(continent:string){
     this.filteredCountries = []
     for(let country of this.countries){
-      for(let con of country.continent)
+      for(let con of country.continents)
         if(con == continent){
           this.filteredCountries.push(country);
         }

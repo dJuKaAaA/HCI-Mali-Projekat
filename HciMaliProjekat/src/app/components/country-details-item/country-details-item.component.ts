@@ -73,7 +73,7 @@ export class CountryDetailsItemComponent implements OnInit {
   ngOnInit(): void { }
 
   @Input() title: string = "";
-  @Input() content: string = "";
+  @Input() content: String = "";
 
   @ViewChild('itemContent') itemContent: ElementRef;
 

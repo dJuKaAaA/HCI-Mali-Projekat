@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Country } from '../model/country.model';
+import { Country } from '../../model/country.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card',
@@ -10,6 +11,10 @@ export class CardComponent implements OnInit {
   @Input() country: Country = {} as Country;
   @Input() numberOfSelectedCards = 0;
   isSelected: boolean = false;
+
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {}
 
@@ -23,5 +28,6 @@ export class CardComponent implements OnInit {
 
   onDetailsClick(country: Country) {
     localStorage.setItem('countries', JSON.stringify([country]));
+    this.router.navigate(['details']);
   }
 }

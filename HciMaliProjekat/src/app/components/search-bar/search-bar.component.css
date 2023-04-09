@@ -126,7 +126,7 @@
 }
 
 
-@media only screen and (max-width: 1000px){
+@media only screen and (max-width: 1350px){
     #filter-by-continent{
         grid-template-columns: 32% 32% 32%;
         grid-row-gap: 10px;

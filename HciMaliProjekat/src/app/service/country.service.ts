@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Country } from '../model/country.model';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map, of } from 'rxjs';
+import { Observable, count, map, of } from 'rxjs';
+import { environment } from 'src/environment/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,7 @@ export class CountryService {
     let countries: Country[] = [];
 
     this.http
-      .get('https://restcountries.com/v3.1/all')
+      .get(`${environment.countriesEndpointUrl}/v3.1/all`)
       .subscribe((data: any) => {
         data.forEach((element: any) => {
           let country: Country = this.convertToCountry(element);
@@ -27,7 +28,7 @@ export class CountryService {
   public fetchByName(name: String): Observable<Country> {
     let country: Country = {} as Country;
     this.http
-      .get(`https://restcountries.com/v3.1/name/${name}`)
+      .get(`${environment.countriesEndpointUrl}/v3.1/name/${name}`)
       .subscribe((data: any) => {
         data.forEach((element: any) => {
           country = this.convertToCountry(element);
@@ -56,16 +57,27 @@ export class CountryService {
     country.capitalCity = apiCountry.capital;
     country.population = apiCountry.population;
     country.continents = apiCountry.continents;
+    country.region = apiCountry.region;
     country.subregion = apiCountry.subregion;
     country.latitude = apiCountry.latlng[0];
     country.longitude = apiCountry.latlng[1];
     country.map = apiCountry.maps.openStreetMaps;
     country.crest = apiCountry.coatOfArms.png;
     country.timeZones = apiCountry.timezones;
+    country.languages = this.getLanguages(apiCountry);
     if (apiCountry.postalCode?.format)
       country.postalCode = apiCountry.postalCode?.format;
     else country.postalCode = '';
-    console.log(country);
+    // console.log(country);
     return country;
   }
+
+  private getLanguages(apiCountry: any): String[] {
+    let languages = [];
+    for (let language in apiCountry.languages) {
+      languages.push(apiCountry.languages[language]);
+    }
+    return languages;
+  }
+
 }

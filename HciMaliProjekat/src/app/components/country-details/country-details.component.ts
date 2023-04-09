@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild } fr
 import { CountryDetailsInfoComponent } from '../country-details-info/country-details-info.component';
 import { trigger, transition, style, animate, state } from '@angular/animations';
 import { environment } from 'src/environment/environment';
+import { Country } from 'src/app/model/country.model';
 
 const LARGE_STATE: string = "LARGE_STATE";
 const SMALL_STATE: string = "SMALL_STATE";
@@ -27,7 +28,7 @@ const ANIMATION_TIME: number = environment.animationTime * 2;
     ]),
   ]
 })
-export class CountryDetailsComponent implements AfterViewInit {
+export class CountryDetailsComponent implements OnInit, AfterViewInit {
 
   @ViewChild(CountryDetailsInfoComponent) countryDetailComponent: CountryDetailsInfoComponent;
 
@@ -38,23 +39,36 @@ export class CountryDetailsComponent implements AfterViewInit {
   flags: Array<ElementRef> = [];
   flagAnimState: Array<string> = [LARGE_STATE, SMALL_STATE, SMALL_STATE]
 
-  countries: Array<any> = [{}, {}, {}] 
+  countries: Array<Country> = [] 
   selectedCountryIndex: number = 0;
 
   constructor(
     private renderer: Renderer2
   ) { }
 
+  ngOnInit(): void {
+    const localStorageItem = localStorage.getItem("countries")?.toString()!;
+    this.countries = JSON.parse(localStorageItem);
+  }
+
   ngAfterViewInit(): void {
     this.flags.push(this.flag1);
     this.flags.push(this.flag2);
     this.flags.push(this.flag3);
 
-    for (let i =  this.countries.length; i < 3 ; ++i) {
+    for (let i = this.countries.length; i < 3 ; ++i) {
       this.renderer.setStyle(
         this.flags[i].nativeElement,
         'display',
         'none'
+      );
+    }
+
+    for (let i = 0; i < this.countries.length; ++i) {
+      this.renderer.setAttribute(
+        this.flags[i].nativeElement,
+        'src',
+        this.countries[i].flag.toString()
       );
 
     }

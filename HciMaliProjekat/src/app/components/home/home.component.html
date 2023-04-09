@@ -1,0 +1,17 @@
+<div class="header">
+    <div class="header-title">
+        <p>Zanimljiva geografija</p>
+        <img src="assets/header-icon.png" class="header-image"/>
+    </div>
+    <div class="search-bar-container">
+        <app-search-bar [countries]="allCountries" (filtered)="searchCountries($event)"></app-search-bar>
+    </div>
+
+</div>
+
+<div class="content">
+    <div>
+        <app-cards [countries]="displayedCountries"></app-cards>
+    </div>
+
+</div>

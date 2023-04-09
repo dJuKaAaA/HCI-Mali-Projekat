@@ -1,0 +1,51 @@
+:host {
+    display: grid;
+    grid-template-rows: 120px auto;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+.header {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 30% 70%;
+}
+
+.header-title {
+    font-size: 30px;
+    margin: 0 25px 0 50px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.header-image {
+    margin-left: 10px;
+    height: 70px;
+}
+
+.search-bar-container {
+    width: 90%;
+    margin: 0 5%;
+}
+
+.content {
+    background: linear-gradient(to right, #15657D, #aae4f6);
+    width: 100vw;
+    height: 100%;
+}
+
+@media only screen and (max-width: 1500px) {
+
+    :host {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .header {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+
+}
