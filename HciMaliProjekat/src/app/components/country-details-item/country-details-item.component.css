@@ -1,0 +1,10 @@
+.item-title {
+    color: #CFCFCF;
+    font-size: 2vh;
+}
+
+.item-content {
+    color: white;
+    font-size: 4vh;
+    word-break: break-all;
+}

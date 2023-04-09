@@ -6,10 +6,27 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CardComponent } from './card/card.component';
 import { CardsComponent } from './cards/cards.component';
+import { CountryDetailsComponent } from './components/country-details/country-details.component';
+import { CountryDetailsInfoComponent } from './components/country-details-info/country-details-info.component';
+import { CountryDetailsItemComponent } from './components/country-details-item/country-details-item.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-  declarations: [AppComponent, CardComponent, CardsComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  declarations: [
+    AppComponent,
+    CountryDetailsComponent,
+    CountryDetailsInfoComponent,
+    CountryDetailsItemComponent,
+    CardComponent,
+    CardsComponent
+  ],
+  imports: [
+    HttpClientModule,
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule
+   
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
