@@ -115,6 +115,16 @@ export class CountryDetailsItemComponent implements OnInit, AfterViewInit {
         'transform',
         'translate(50px, 0)'
       );
+      this.renderer.setStyle(
+        this.itemContentRedirection.nativeElement,
+        'opacity',
+        '0.0'
+      );
+      this.renderer.setStyle(
+        this.itemContentRedirection.nativeElement,
+        'transform',
+        'translate(50px, 0)'
+      );
 
       setTimeout(() => {
         this.leftSwipeState = ENDING_STATE_LEFT;
@@ -141,6 +151,16 @@ export class CountryDetailsItemComponent implements OnInit, AfterViewInit {
       );
       this.renderer.setStyle(
         this.itemContent.nativeElement,
+        'transform',
+        'translate(-50px, 0)'
+      );
+      this.renderer.setStyle(
+        this.itemContentRedirection.nativeElement,
+        'opacity',
+        '0.0'
+      );
+      this.renderer.setStyle(
+        this.itemContentRedirection.nativeElement,
         'transform',
         'translate(-50px, 0)'
       );

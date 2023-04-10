@@ -142,6 +142,9 @@ export class CountryDetailsInfoComponent implements OnInit, AfterViewInit {
         'translate(50px, 0)'
       );
       ++this.selectedCountry.index;
+      if (this.selectedCountry.index >= this.countries.length) {
+        this.selectedCountry.index = 0;
+      }
       this.selectedCountry.country = this.countries[this.selectedCountry.index];
 
       setTimeout(() => {
@@ -184,6 +187,9 @@ export class CountryDetailsInfoComponent implements OnInit, AfterViewInit {
       );
 
       --this.selectedCountry.index;
+      if (this.selectedCountry.index < 0) {
+        this.selectedCountry.index = this.countries.length - 1;
+      }
       this.selectedCountry.country = this.countries[this.selectedCountry.index];
 
       setTimeout(() => {
