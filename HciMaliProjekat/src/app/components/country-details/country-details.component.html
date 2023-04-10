@@ -9,7 +9,7 @@
 <div class="content">
     <app-country-details-info [countries]="countries" [selectedCountry]="selectedCountry"></app-country-details-info>
     <div class="navigation-buttons" *ngIf="countries.length > 1">
-        <button (click)="rightSwipe()" [disabled]="selectedCountry.index <= 0">←</button>
-        <button (click)="leftSwipe()" [disabled]="selectedCountry.index >= countries.length - 1">→</button>
+        <button (click)="rightSwipe()">←</button>
+        <button (click)="leftSwipe()">→</button>
     </div>
 </div>

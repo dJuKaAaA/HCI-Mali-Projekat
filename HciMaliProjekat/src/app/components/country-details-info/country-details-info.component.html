@@ -12,12 +12,12 @@
             <app-country-details-item class="single-item" [title]="'Capital city'" [content]="country.capitalCity"></app-country-details-item>
             <app-country-details-item class="single-item" [title]="'Region'" [content]="country.region"></app-country-details-item>
             <app-country-details-item class="single-item" [title]="'Subregion'" [content]="country.subregion"></app-country-details-item>
-            <app-country-details-item class="single-item" [title]="'Currency'" [content]="country.currencies[0]"></app-country-details-item>
+            <app-country-details-item class="single-item" [title]="'Currency'" [content]="country.currencies.toString()"></app-country-details-item>
             <app-country-details-item class="single-item" [title]="'Population'" [content]="country.population.toString()"></app-country-details-item>
-            <app-country-details-item class="single-item" [title]="'Timezone'" [content]="country.timeZones[0]"></app-country-details-item>
-            <app-country-details-item class="single-item" [title]="'Language'" [content]="'Srbski'"></app-country-details-item>
-            <app-country-details-item class="single-item" [title]="'Longitude/Latitude'" [content]="country.longitude + ' ' + country.latitude"></app-country-details-item>
-            <app-country-details-item class="single-item" [title]="'Continent'" [content]="country.continents[0]"></app-country-details-item>
+            <app-country-details-item class="single-item" [title]="'Timezone'" [content]="country.timeZones.toString()"></app-country-details-item>
+            <app-country-details-item class="single-item" [title]="'Language'" [content]="country.languages.toString()"></app-country-details-item>
+            <app-country-details-item class="single-item" [title]="'Longitude/Latitude'" [content]="country.longitude + '/' + country.latitude"></app-country-details-item>
+            <app-country-details-item class="single-item" [title]="'Continent'" [content]="country.continents.toString()"></app-country-details-item>
             <app-country-details-item class="single-item" [title]="'Map'" [content]="country.map" [isRediretion]="true"></app-country-details-item>
 
         </div>
@@ -44,12 +44,12 @@
             <app-country-details-item class="single-item" [title]="'Capital city'" [content]="selectedCountry.country.capitalCity"></app-country-details-item>
             <app-country-details-item class="single-item" [title]="'Region'" [content]="selectedCountry.country.region"></app-country-details-item>
             <app-country-details-item class="single-item" [title]="'Subregion'" [content]="selectedCountry.country.subregion"></app-country-details-item>
-            <app-country-details-item class="single-item" [title]="'Currency'" [content]="selectedCountry.country.currencies[0]"></app-country-details-item>
+            <app-country-details-item class="single-item" [title]="'Currency'" [content]="selectedCountry.country.currencies.toString()"></app-country-details-item>
             <app-country-details-item class="single-item" [title]="'Population'" [content]="selectedCountry.country.population.toString()"></app-country-details-item>
-            <app-country-details-item class="single-item" [title]="'Timezone'" [content]="selectedCountry.country.timeZones[0]"></app-country-details-item>
-            <app-country-details-item class="single-item" [title]="'Language'" [content]="'Srbski'"></app-country-details-item>
+            <app-country-details-item class="single-item" [title]="'Timezone'" [content]="selectedCountry.country.timeZones.toString()"></app-country-details-item>
+            <app-country-details-item class="single-item" [title]="'Language'" [content]="selectedCountry.country.languages.toString()"></app-country-details-item>
             <app-country-details-item class="single-item" [title]="'Longitude/Latitude'" [content]="selectedCountry.country.longitude + '/' + selectedCountry.country.latitude"></app-country-details-item>
-            <app-country-details-item class="single-item" [title]="'Continent'" [content]="selectedCountry.country.continents[0]"></app-country-details-item>
+            <app-country-details-item class="single-item" [title]="'Continent'" [content]="selectedCountry.country.continents.toString()"></app-country-details-item>
             <app-country-details-item class="single-item" [title]="'Map'" [content]="selectedCountry.country.map" [isRediretion]="true"></app-country-details-item>
 
         </div>
