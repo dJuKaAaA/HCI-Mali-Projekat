@@ -3,6 +3,7 @@ import { CountryDetailsInfoComponent } from '../country-details-info/country-det
 import { trigger, transition, style, animate, state } from '@angular/animations';
 import { environment } from 'src/environment/environment';
 import { Country } from 'src/app/model/country.model';
+import { Router } from '@angular/router';
 
 const LARGE_STATE: string = "LARGE_STATE";
 const SMALL_STATE: string = "SMALL_STATE";
@@ -43,7 +44,8 @@ export class CountryDetailsComponent implements OnInit {
   selectedCountry: { country: Country, index: number } = {} as { country: Country, index: number };
 
   constructor(
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private router: Router
   ) { }
 
   ngOnInit(): void {

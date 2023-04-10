@@ -28,6 +28,7 @@
 
 #search-bar input:focus{
     outline: none;
+    height: 46px;
 }
 
 #search-bar img{

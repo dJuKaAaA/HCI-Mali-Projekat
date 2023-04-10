@@ -1,4 +1,4 @@
-<form [style.border-width] = "borderWidth" #f="ngForm" (ngSubmit) = "onSubmit(f)" novalidate id="search-bar">
+<form [style.border-width] = "borderWidth" #f="ngForm" (ngSubmit) = "onSubmit()" novalidate id="search-bar">
     <select #type (change)="changeTheSearch(type.value)">
         <option value = "name">Name</option>
         <option value = "currency">Currency</option>

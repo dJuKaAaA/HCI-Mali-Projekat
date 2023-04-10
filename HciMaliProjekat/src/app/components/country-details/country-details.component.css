@@ -18,6 +18,13 @@
     align-items: center;
 }
 
+.header-title a {
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    color: black;
+}
+
 .header-image {
     margin-left: 10px;
     height: 70px;
@@ -126,7 +133,6 @@
 
     .header-title {
         justify-content: center;
-        font-size: 5vw;
     }
 
     .flags-container {

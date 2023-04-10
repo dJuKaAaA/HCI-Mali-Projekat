@@ -6,7 +6,7 @@
             <img src="{{ country.flag }}" class="flag"/>
         </div>
 
-        <div class="items" *ngIf="country.name != 'Kosovo'">
+        <div class="items">
 
             <app-country-details-item class="single-item" [title]="'Name'" [content]="country.name"></app-country-details-item>
             <app-country-details-item class="single-item" [title]="'Capital city'" [content]="country.capitalCity"></app-country-details-item>

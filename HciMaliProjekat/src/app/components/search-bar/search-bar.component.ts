@@ -50,58 +50,6 @@ export class SearchBarComponent {
     return value.toLowerCase().replace(/\s/g, '');
   }
 
-  // makeCountries():Country[]{
-  //   let c1 = {name:"Serbia",
-  //     currency:["Dinar"],
-  //     capitalCity:"Belgrade",
-  //     continent:["Europe"],
-  //     subregion:"Balkan",
-  //     latitude:42,
-  //     longitude:34,
-  //     Population:8000000,
-  //     map:"asd",
-  //     flag:"asd",
-  //     crest:"asd",
-  //     timeZone:"String",
-  //     language:"Serbian",
-  //     postalCode:123,
-  //     neighbors: []}
-
-  //     let c2 = {name:"Croatia",
-  //     currency:["Euro", "Dinar"],
-  //     capitalCity:"Zagreb",
-  //     continent:["Europe"],
-  //     subregion:"Balkan",
-  //     latitude:42,
-  //     longitude:34,
-  //     Population:8000000,
-  //     map:"asd",
-  //     flag:"asd",
-  //     crest:"asd",
-  //     timeZone:"String",
-  //     language: "Croatian",
-  //     postalCode:123,
-  //     neighbors: []}
-
-  //     let c3 = {name:"Chad",
-  //     currency:["Dinar"],
-  //     capitalCity:"Belgrade",
-  //     continent:["Africa"],
-  //     subregion:"Balkan",
-  //     latitude:42,
-  //     longitude:34,
-  //     Population:8000000,
-  //     map:"asd",
-  //     flag:"asd",
-  //     crest:"asd",
-  //     timeZone:"String",
-  //     postalCode:123,
-  //     language:"Chadski",
-  //     neighbors: []}
-
-  //   return [c1, c2, c3]
-  // }
-
   fillUpArrays(selectedCountries:Country[]){
     let allNames:string[] = []
     let allCurrency:string[] = []
@@ -133,7 +81,7 @@ export class SearchBarComponent {
   }
 
 
-  onSubmit(f: NgForm){
+  onSubmit(){
     let value = this.control.getRawValue();
 
     if(value == ""){
@@ -143,7 +91,6 @@ export class SearchBarComponent {
 
     let selectedCountries:Country[] = []
     for(let country of this.filteredCountries){
-      console.log(country.capitalCity)
       if(this.searchBy == "name" && country.name.toLowerCase().includes(value?.toLowerCase()!)){
         selectedCountries.push(country);
       }else if(this.searchBy == "continent"){
@@ -160,6 +107,7 @@ export class SearchBarComponent {
         selectedCountries.push(country);
       }
     }
+    console.log(selectedCountries);
     this.filtered.emit(selectedCountries);
   }
 
@@ -172,6 +120,7 @@ export class SearchBarComponent {
   selectAutofill(option:string){
     this.autofillOpacity = "none";
     this.control.setValue(option);
+    this.onSubmit();
   }
 
   deHighlight(){
