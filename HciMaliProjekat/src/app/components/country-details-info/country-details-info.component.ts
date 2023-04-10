@@ -89,7 +89,7 @@ export class CountryDetailsInfoComponent implements OnInit, AfterViewInit {
   ngOnInit(): void { }
 
   ngAfterViewInit(): void {
-    let columnDefinition = "100%";
+    let columnDefinition: string = "100%";
     switch (this.countries.length) {
       case 1:
         columnDefinition = "100%";

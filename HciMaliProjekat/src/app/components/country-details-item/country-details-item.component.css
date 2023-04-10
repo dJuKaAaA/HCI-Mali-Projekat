@@ -1,10 +1,22 @@
 .item-title {
     color: #CFCFCF;
-    font-size: 2vh;
+    font-size: 1vw;
 }
 
 .item-content {
     color: white;
-    font-size: 4vh;
+    font-size: 2vw;
     word-break: break-all;
+}
+
+@media screen and (max-width: 800px) {
+
+    .item-title {
+        font-size: 3vw;
+    }
+
+    .item-content {
+        font-size: 6vw;
+    }
+
 }
