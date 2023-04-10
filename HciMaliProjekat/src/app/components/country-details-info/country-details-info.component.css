@@ -5,7 +5,7 @@
 }
 
 .single-item {
-    padding: 1vh 3vh; 
+    padding: 1vh 1vw; 
 }
 
 .flag-container {
@@ -44,6 +44,10 @@
         display: block;
     }
 
+    .single-item {
+        padding: 1vh 5vw; 
+    }
+
 }
 
 @media screen and (max-width: 800px) and (min-width: 500px) {
@@ -54,6 +58,10 @@
 
     .mobile-country-details {
         display: block;
+    }
+
+    .single-item {
+        padding: 1vh 5vw; 
     }
 
 }
