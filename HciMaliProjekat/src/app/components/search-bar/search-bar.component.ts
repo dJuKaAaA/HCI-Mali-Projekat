@@ -91,19 +91,30 @@ export class SearchBarComponent {
 
     let selectedCountries:Country[] = []
     for(let country of this.filteredCountries){
-      if(this.searchBy == "name" && country.name.toLowerCase().includes(value?.toLowerCase()!)){
+      let name = this._normalizeValue(country.name.toString());
+      let capitalCity = this._normalizeValue(country.capitalCity.toString());
+      let continents:string[] = []
+      let currencies:string[] = []
+      for(let continent of country.continents){
+        continents.push(this._normalizeValue(country.continents.toString()));
+      }
+      for(let currency of country.currencies){
+        currencies.push(this._normalizeValue(currency.toString()))
+      }
+      
+      if(this.searchBy == "name" && name.includes(value?.toLowerCase()!)){
         selectedCountries.push(country);
       }else if(this.searchBy == "continent"){
-        for(let continent of country.continents){
-          if(continent.toLowerCase().includes(value?.toLowerCase()!))
+        for(let continent of continents){
+          if(continent.includes(value?.toLowerCase()!))
             selectedCountries.push(country);
         }
       }else if(this.searchBy == "currency"){
-        for(let currency of country.currencies){
-          if(currency.toLowerCase().includes(value?.toLowerCase()!))
+        for(let currency of currencies){
+          if(currency.includes(value?.toLowerCase()!))
             selectedCountries.push(country);
         }
-      }else if(this.searchBy == "capitalCity" && country.capitalCity.toLowerCase().includes(value?.toLowerCase()!)){
+      }else if(this.searchBy == "capitalCity" && capitalCity.includes(value?.toLowerCase()!)){
         selectedCountries.push(country);
       }
     }
